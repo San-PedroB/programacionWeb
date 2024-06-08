@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- Título de Contacto -->
+    <div class="container-contacto">
+        Contacto
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="container mt-2 pt-5s">
+        <div class="row content-wrapper">
+            <div class="col-md-6 text-center">
+              <h3>Nuestra Ubicación</h3>
+              <div id="map" style="height: 400px; width: 100%;"></div>
+            </div>
+            <div class="col-md-6">
+                <form class="form-contact">
+                    <div class="mb-3">
+                        <label for="name-input" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name-input" placeholder="Escribe tu nombre..." required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastname-input" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" id="lastname-input" placeholder="Escribe ambos apellidos..." required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone-input" class="form-label">Teléfono</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">+56</span>
+                            <input type="tel" class="form-control" id="phone-input" pattern="\d{9}" placeholder="Escribe tu teléfono..." required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email-input" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email-input" placeholder="Escribe tu correo..." required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-input" class="form-label">Mensaje</label>
+                        <textarea id="message-input" class="form-control" rows="6" placeholder="Escribe tu mensaje..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

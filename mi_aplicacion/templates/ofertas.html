@@ -1,0 +1,169 @@
+
+{% extends "base.html" %}
+{% block content %}
+<!-- INICIO H1 OFERTAS     -->
+  <section class="container-fluid mt-2 pt-2">
+    <h1 class="text-center">¡Oportunidad increíble!</h1>
+  </section>
+
+  <section class="container mb-5 mt-2 pt-2">
+<!-- FINAL H1 OFERTAS     -->
+
+
+<!-- INICIO CARDS     -->
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col text-center">
+      <div class="card">
+        <img src="Imagenes/17.jpg" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Chalequito Deep Ocean</h5>
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-oferta1">
+            Ver producto
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-center" >
+        <img src="Imagenes/15.jpg" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Chalequito Eddie Cream</h5>
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-oferta2">
+            Ver producto
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-center">
+        <img src="Imagenes/16.jpg" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Chalequito Atardecer</h5>
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-oferta3">
+            Ver producto
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <!-- FINAL CARDS    -->  
+
+  
+  <!-- INICIO MODAL -->
+  <!-- MODAL 1 -->
+  <div class="modal fade" id="modal-oferta1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Chalequito Deep Ocean ¡Oferta! </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card mb-3" style="max-width: 640px;  margin: 0 auto; " id="modaasdasdasd">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="Imagenes/17.jpg" class="img-fluid rounded-start">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title"><del>$21,999</del> $16,999</h5>
+                  <p class="card-text small">Nuevo Sweater Mesh, un sweater de estilo calado muy cómodo y estiloso. Con terminaciones en cuello, puños y pretina inferior mas grueso lo que proporciona un calce cómodo.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>    
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-carro-compras">Añadir al carrito de compras</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FIN MODAL 1 -->
+  <!-- MODAL 2 -->
+  <div class="modal fade" id="modal-oferta2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Chalequito Eddie Cream ¡Oferta!</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card mb-3" style="max-width: 640px;  margin: 0 auto; " id="modaasdasdasd">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="Imagenes/15.jpg" class="img-fluid rounded-start">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title"><del>$21,990</del> $16,990</h5>
+                  <p class="card-text small">Nuevo Sweater Mesh, un sweater de estilo calado muy cómodo y estiloso. Con terminaciones en cuello, puños y pretina inferior mas grueso lo que proporciona un calce cómodo.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-carro-compras">Añadir al carrito de compras</button>
+        </div>    
+      </div>
+    </div>
+  </div>
+  <!-- FIN MODAL 2 -->
+
+<!-- MODAL 3 -->
+<div class="modal fade" id="modal-oferta3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Chalequito Atardecer ¡Oferta!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3" style="max-width: 640px;  margin: 0 auto; " id="modaasdasdasd">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="Imagenes/16.jpg" class="img-fluid rounded-start">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><del>$21,990</del> $16,990</h5>
+                <p class="card-text small">Nuevo Sweater Mesh, un sweater de estilo calado muy cómodo y estiloso. Con terminaciones en cuello, puños y pretina inferior mas grueso lo que proporciona un calce cómodo.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-carro-compras">Añadir al carrito de compras</button>
+      </div>   
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL 3 -->
+
+<!-- MODAL CARRO DE COMPRAS -->
+<div class="modal fade" tabindex="-1" id="modal-carro-compras" data-bs-backdrop="static" >
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Producto añadido con éxito</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer d-flex justify-content-center  mt-3 mb-3">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL CARRO DE COMPRAS -->
+
+<!-- FINAL MODAL -->
+
+{% endblock %}
