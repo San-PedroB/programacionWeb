@@ -15,3 +15,9 @@ def carrito(request):
 
 def ofertas(request):
     return render(request, 'ofertas.html')
+
+def usuario(request):
+    return render(request, 'usuario.html')
+
+def login(request):
+    return render(request, 'login.html')
