@@ -14,6 +14,7 @@ urlpatterns = [
     path('usuario/', views.usuario, name='usuario'),
     path('ofertas/', views.ofertas, name='ofertas'),
     path('accounts/', include('django.contrib.auth.urls')),  # Incluye las URLs de autenticación predeterminadas de Django
+    path('registro/', views.registro, name='registro'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

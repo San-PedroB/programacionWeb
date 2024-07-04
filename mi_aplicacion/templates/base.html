@@ -40,6 +40,8 @@
             <a class="nav-link active" href="{% url 'contact' %}" >Contacto</a>
           </li>
         </ul>
+
+<!-- INICIO ALERT   -->
 {% if user.is_authenticated %}
     <a href="{% url 'usuario' %}" class="btn btn-outline-success btn-lg me-3">
         <i class="bi bi-person"></i> Ver perfil de Usuario
@@ -58,7 +60,7 @@
     </div>
   </nav>
 
-<!-- FIN NAVBAR     -->
+<!-- FIN ALERT   -->
 
 
 <!-- INICIO CAROUSEL     -->
@@ -78,10 +80,16 @@
 
 <!-- INICIO ALERTA OFERTAS-->
 <div class="alert alert-info alert-dismissible fade show" role="alert">
-  <strong>¡No te pierdas nuestras ofertas de temporada!</strong> <a href="{% url 'login' %}" class="alert-link">Registrate</a> o 
+  {% if user.is_authenticated %}
+  <strong>¡No te pierdas nuestras ofertas de temporada! Visita la sección 
+  de <a href="{% url 'ofertas' %}" class="alert-link">Ofertas</a> para ver descuentos increíbles.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  {% else %}
+  <strong>¡No te pierdas nuestras ofertas de temporada!</strong> <a href="{% url 'registro' %}" class="alert-link">Registrate</a> o 
   <a href="{% url 'login' %}" class="alert-link">Inicia Sesion</a> y visita la sección 
   de <a href="{% url 'ofertas' %}" class="alert-link">Ofertas</a> para ver descuentos increíbles.
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  {% endif %}
 </div>
 <!-- FINAL ALERTA OFERTAS-->
 
