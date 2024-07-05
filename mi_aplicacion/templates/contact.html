@@ -9,8 +9,8 @@
     <div class="container mt-2 pt-5s">
         <div class="row content-wrapper">
             <div class="col-md-6 text-center">
-              <h3>Nuestra Ubicación</h3>
-              <div id="map" style="height: 400px; width: 100%;"></div>
+                <h3>Nuestra Ubicación</h3>
+                <div id="map" style="height: 400px; width: 100%;"></div>
             </div>
             <div class="col-md-6">
                 <form class="form-contact">
@@ -42,6 +42,23 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
 
+{% block extra_js %}
+    <script>
+        function initMap() {
+            const location = { lat: -33.494762, lng: -70.723526 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 14,
+                center: location,
+            });
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: "Nuestra ubicación",
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5XUR-A-qpUkiJYRr9ibAkvvwpggb8x3o&callback=initMap">
+    </script>
+{% endblock %}
