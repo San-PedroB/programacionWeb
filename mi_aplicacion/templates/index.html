@@ -1,309 +1,64 @@
 {% extends "base.html" %}
-{% block content %} 
-{% load static %}
+{% block content %}
+<section class="container-fluid mt-2 pt-2">
+    <h1 class="text-center">Productos Destacados</h1>
+</section>
 
-
-  <section class="container-fluid mt-2 pt-2">
-    <h1 class="text-center">Productos destacados</h1>
-  </section>
-
-  <section class="container mb-5 mt-2 pt-2">
-
-<!-- INICIO CARDS     -->
-
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col text-center">
-      <div class="card">
-        <img src="Imagenes/1.jpg" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title">Chalequito Isis Layer</h5>
-          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-destacados1">
-            Ver producto 
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card text-center">
-        <img src="Imagenes/2.jpg" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title">Chalequito Garden</h5>
-          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-destacados2">
-            Ver producto
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card text-center">
-        <img src="Imagenes/3.jpg" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title">Chalequito LittleCherry</h5>
-          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-destacados3">
-            Ver producto
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card text-center">
-        <img src="Imagenes/6.jpeg" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title">Chalequito Grey Sheep</h5>
-          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-destacados4">
-            Ver producto
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card text-center">
-        <img src="Imagenes/7.jpeg" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title">Chalequito Ocean</h5>
-          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-destacados5">
-            Ver producto
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card text-center">
-        <img src="Imagenes/8.jpeg" class="card-img-top">
-        <div class="card-body">
-            <h5 class="card-title">Chalequito Mateo</h5>
-            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-destacados6">
-              Ver producto
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL CARDS     -->
-
-  <!-- INICIO MODAL -->
-  <!-- MODAL 1 -->
-  <div class="modal fade" id="modal-destacados1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Chalequito Isis Layer</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="card mb-3" style="max-width: 640px;  margin: 0 auto; " id="modaasdasdasd">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="{% static 'images/1.jpg' %}" class="img-fluid rounded-start">
-              </div>
-              <div class="col-md-8">
+<section class="container mb-5 mt-2 pt-2">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for producto in productos_destacados %}
+        <div class="col text-center">
+            <div class="card">
+                <img src="{{ producto.imagen.url }}" class="card-img-top">
                 <div class="card-body">
-                  <h5 class="card-title">$21,990</h5>
-                  <p class="card-text small">Nuevo Sweater Mesh, un sweater de estilo calado muy cómodo y estiloso. Con terminaciones en cuello, puños y pretina inferior mas grueso lo que proporciona un calce cómodo.</p>
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    {% if producto.es_oferta %}
+                    <p class="card-text"><del>${{ producto.precio }}</del> <strong>${{ producto.precio_oferta }}</strong></p>
+                    {% else %}
+                    <p class="card-text">${{ producto.precio }}</p>
+                    {% endif %}
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-producto{{ producto.id }}">
+                        Ver producto
+                    </button>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>    
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-carro-compras">Añadir al carrito de compras</button>
         </div>
-      </div>
-    </div>
-  </div>
-  <!-- FIN MODAL 1 -->
 
-  <!-- MODAL 2 -->
-
-  <div class="modal fade" id="modal-destacados2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered ">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Chalequito Garden</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="card mb-3" style="max-width: 640px;  margin: 0 auto; " id="modaasdasdasd">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="Imagenes/2.jpg" class="img-fluid rounded-start">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">$21,990</h5>
-                  <p class="card-text small">Nuevo Sweater Mesh, un sweater de estilo calado muy cómodo y estiloso. Con terminaciones en cuello, puños y pretina inferior mas grueso lo que proporciona un calce cómodo.</p>
+        <!-- Modal -->
+        <div class="modal fade" id="modal-producto{{ producto.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ producto.nombre }}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card mb-3" style="max-width: 640px; margin: 0 auto;">
+                            <div class="row g-0">
+                                <div class="col-md-4 text-center">
+                                    <img src="{{ producto.imagen.url }}" class="img-fluid rounded-start">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        {% if producto.es_oferta %}
+                                        <h5 class="card-title"><del>${{ producto.precio }}</del> <strong>${{ producto.precio_oferta }}</strong></h5>
+                                        {% else %}
+                                        <h5 class="card-title">${{ producto.precio }}</h5>
+                                        {% endif %}
+                                        <p class="card-text small">{{ producto.descripcion }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+                        <a href="{% url 'agregar_al_carrito' producto.id %}" class="btn btn-primary">Añadir al carrito de compras</a>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-carro-compras">Añadir al carrito de compras</button>
-        </div>
-      </div>
+        {% endfor %}
     </div>
-  </div>
-
-  <!-- FIN MODAL 2 -->
-
-  <!-- MODAL 3 -->
-  <div class="modal fade" id="modal-destacados3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Chalequito LittleCherry</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="card mb-3" style="max-width: 640px;  margin: 0 auto; " id="modaasdasdasd">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="Imagenes/3.jpg" class="img-fluid rounded-start">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">$21,990</h5>
-                  <p class="card-text small">Nuevo Sweater Mesh, un sweater de estilo calado muy cómodo y estiloso. Con terminaciones en cuello, puños y pretina inferior mas grueso lo que proporciona un calce cómodo.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>    
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-carro-compras">Añadir al carrito de compras</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- FIN MODAL 3 -->
-
-
-  <!-- MODAL 4 -->
-  <div class="modal fade" id="modal-destacados4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Chalequito Grey Sheep</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="card mb-3" style="max-width: 640px;  margin: 0 auto; " id="modaasdasdasd">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="Imagenes/6.jpeg" class="img-fluid rounded-start">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">$21,990</h5>
-                  <p class="card-text small">Nuevo Sweater Mesh, un sweater de estilo calado muy cómodo y estiloso. Con terminaciones en cuello, puños y pretina inferior mas grueso lo que proporciona un calce cómodo.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>    
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-carro-compras">Añadir al carrito de compras</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- FIN MODAL 4 -->
-
-  <!-- MODAL 5 -->
-  <div class="modal fade" id="modal-destacados5" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Chalequito Ocean</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="card mb-3" style="max-width: 640px;  margin: 0 auto; " id="modaasdasdasd">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="Imagenes/7.jpeg" class="img-fluid rounded-start">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">$21,990</h5>
-                  <p class="card-text small">Nuevo Sweater Mesh, un sweater de estilo calado muy cómodo y estiloso. Con terminaciones en cuello, puños y pretina inferior mas grueso lo que proporciona un calce cómodo.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>    
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-carro-compras">Añadir al carrito de compras</button>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- FIN MODAL 5 -->
-
-  <!-- MODAL 6 -->
-  <div class="modal fade" id="modal-destacados6" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Chalequito Mateo</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="card mb-3" style="max-width: 640px;  margin: 0 auto; " id="modaasdasdasd">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="Imagenes/8.jpeg" class="img-fluid rounded-start">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">$21,990</h5>
-                  <p class="card-text small">Nuevo Sweater Mesh, un sweater de estilo calado muy cómodo y estiloso. Con terminaciones en cuello, puños y pretina inferior mas grueso lo que proporciona un calce cómodo.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>    
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-carro-compras">Añadir al carrito de compras</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- FIN MODAL 6 -->
-
-  <!-- MODAL CARRO DE COMPRAS -->
-  <div class="modal fade" tabindex="-1" id="modal-carro-compras" data-bs-backdrop="static" >
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Producto añadido con éxito</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-foote d-flex justify-content-center  mt-3 mb-3">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Volver</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- FIN MODAL CARRO DE COMPRAS -->
-
-<!-- FINAL MODAL -->
-
-
-  <section class="container-fluid mt-60 pt-2">
-    <div class="col text-center">
-      <a href="{% url 'productos' %}"class="btn btn-primary btn-lg">Ver Todo</a>
-    </div>
-  </section>
-
+</section>
 {% endblock %}
-

@@ -1,36 +1,60 @@
+# mi_aplicacion/forms.py
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .validators import ValidadorSoloLetras, ValidadorSoloLetrasNumeros
 
-class SignUpForm(UserCreationForm):
+class FormularioRegistro(UserCreationForm):
+    pnombre = forms.CharField(
+        label='Nombre',
+        max_length=255,
+        help_text='Ingrese su primer nombre',
+        validators=[ValidadorSoloLetras().validador],
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Escribe tu nombre...'
+        })
+    )
+    appaterno = forms.CharField(
+        label='Apellido',
+        max_length=255,
+        help_text='Ingrese su apellido paterno',
+        validators=[ValidadorSoloLetras().validador],
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Escribe tu apellido...'
+        })
+    )
     email = forms.EmailField(
+        label='Correo',
         max_length=254,
-        help_text='Ingrese un correo válido',
+        help_text='Ingresa un correo válido',
         widget=forms.EmailInput(attrs={
             'class': 'form-control',
             'placeholder': 'Correo Electrónico'
         })
     )
 
+    username = forms.CharField(
+        label='Nombre de Usuario',
+        max_length=150,
+        validators=[ValidadorSoloLetrasNumeros().validador],
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Escribe tu Nombre De Usuario...'
+        })
+    )
+
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('username', 'email', 'password1', 'password2', 'pnombre', 'appaterno')
         widgets = {
-            'username': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Nombre de Usuario'
-            }),
             'password1': forms.PasswordInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Contraseña'
+                'placeholder': 'Escribe tu contraseña...'
             }),
             'password2': forms.PasswordInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Confirmar Contraseña'
+                'placeholder': 'Confirmar Contraseña...'
             }),
-        }
-        labels = {
-            'username': 'Nombre de Usuario',
-            'password1': 'Contraseña',
-            'password2': 'Confirmar Contraseña',
         }

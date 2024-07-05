@@ -1,23 +1,36 @@
 from django.contrib import admin
-from mi_aplicacion.models import Producto, Carrito, Cliente, TipoProducto, ItemCarrito
+from .models import TipoProducto, Producto, Cliente, Carrito, ItemCarrito
 
-class ProductoAdmin(admin.ModelAdmin):
-    pass
+# Función para generar la lista de atributos automáticamente
+def obtener_todos_los_atributos(modelo):
+    return [atributo.name for atributo in modelo._meta.fields]
 
-class CarritoAdmin(admin.ModelAdmin):
-    pass
-
-class ClienteAdmin(admin.ModelAdmin):
-    pass
-
+@admin.register(TipoProducto)
 class TipoProductoAdmin(admin.ModelAdmin):
-    pass
+    list_display = obtener_todos_los_atributos(TipoProducto)
 
+@admin.register(Producto)
+class ProductoAdmin(admin.ModelAdmin):
+    list_display = obtener_todos_los_atributos(Producto)
+
+@admin.register(Cliente)
+class ClienteAdmin(admin.ModelAdmin):
+    list_display = obtener_todos_los_atributos(Cliente)
+
+@admin.register(Carrito)
+class CarritoAdmin(admin.ModelAdmin):
+    list_display = obtener_todos_los_atributos(Carrito)
+
+@admin.register(ItemCarrito)
 class ItemCarritoAdmin(admin.ModelAdmin):
-    pass
+    list_display = obtener_todos_los_atributos(ItemCarrito)
 
-admin.site.register(Producto, ProductoAdmin)
-admin.site.register(Carrito, CarritoAdmin)
-admin.site.register(Cliente,ClienteAdmin)
-admin.site.register(TipoProducto, TipoProductoAdmin)
-admin.site.register(ItemCarrito, ItemCarritoAdmin)
+# Registrar el modelo User con atributos personalizados
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
+
+class UsuarioAdminPersonalizado(UserAdmin):
+    list_display = obtener_todos_los_atributos(User)
+
+admin.site.unregister(User)
+admin.site.register(User, UsuarioAdminPersonalizado)
