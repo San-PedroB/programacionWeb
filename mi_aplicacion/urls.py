@@ -1,5 +1,5 @@
 from django.urls import path, include
-from . import views
+from .views import actualizar_carrito
 from django.conf import settings 
 from django.conf.urls.static import static
 from mi_aplicacion import views
@@ -8,7 +8,7 @@ from .views import *
 
 urlpatterns = [
     path('', views.index, name='inicio'),  # Ruta para la vista de índice
-    path('contacto/', views.contact, name='contact'),
+    path('contact/', views.contacto, name='contact'),
     path('productos/', views.productos, name='productos'),
     path('carrito/', views.carrito, name='carrito'),
     path('usuario/', views.usuario, name='usuario'),
@@ -17,6 +17,7 @@ urlpatterns = [
     path('registro/', views.registro, name='registro'),
     path('agregar_al_carrito/<int:producto_id>/', views.agregar_al_carrito, name='agregar_al_carrito'),
     path('eliminar_item_carrito/<int:item_id>/', views.eliminar_item_carrito, name='eliminar_item_carrito'),
+    path('actualizar_carrito/', actualizar_carrito, name='actualizar_carrito'),
     path('efectuar_compra/', views.efectuar_compra, name='efectuar_compra'),
 ]
 

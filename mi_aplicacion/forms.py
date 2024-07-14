@@ -1,5 +1,6 @@
 # mi_aplicacion/forms.py
 from django import forms
+from .models import MensajeContacto
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .validators import ValidadorSoloLetras, ValidadorSoloLetrasNumeros
@@ -58,3 +59,8 @@ class FormularioRegistro(UserCreationForm):
                 'placeholder': 'Confirmar Contraseña...'
             }),
         }
+
+class ContactoForm(forms.ModelForm):
+    class Meta:
+        model = MensajeContacto
+        fields = ['nombre', 'apellido', 'telefono', 'email', 'mensaje']

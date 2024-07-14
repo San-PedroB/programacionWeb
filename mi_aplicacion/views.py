@@ -1,14 +1,28 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import FormularioRegistro
+from .forms import FormularioRegistro, ContactoForm
 from .models import Cliente, Carrito, ItemCarrito, Producto
-from django.shortcuts import get_object_or_404
+
 
 def index(request):
     productos_destacados = Producto.objects.filter(es_destacado=True)
     return render(request, "index.html", {'productos_destacados': productos_destacados})
+
+def contacto(request):
+    if request.method == 'POST':
+        form = ContactoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Tu mensaje ha sido enviado con éxito.')
+            return redirect('contacto')
+        else:
+            messages.error(request, 'Por favor corrige los errores a continuación.')
+    else:
+        form = ContactoForm()
+    return render(request, 'contact.html', {'form': form})
+
 
 @login_required
 def ofertas(request):
@@ -50,11 +64,13 @@ def registro(request):
         form = FormularioRegistro()
     return render(request, 'registro.html', {'form': form})
 
-@login_required
 def carrito(request):
-    carrito, _ = Carrito.objects.get_or_create(cliente=request.user.cliente)
-    items = carrito.items.all()
-    return render(request, 'carrito.html', {'items': items})
+    items = ItemCarrito.objects.filter(carrito__cliente__usuario=request.user)
+    total_compra = sum(
+        (item.producto.precio_oferta if item.producto.es_oferta else item.producto.precio) * item.cantidad
+        for item in items
+    )
+    return render(request, 'carrito.html', {'items': items, 'total_compra': total_compra})
 
 @login_required
 def agregar_al_carrito(request, producto_id):
@@ -106,6 +122,11 @@ def efectuar_compra(request):
     messages.success(request, 'Compra realizada con éxito.')
     return redirect('inicio')
 
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from .models import Carrito
+
 @login_required
 def efectuar_compra(request):
     carrito, _ = Carrito.objects.get_or_create(cliente=request.user.cliente)
@@ -125,3 +146,13 @@ def efectuar_compra(request):
     items.delete()
     messages.success(request, 'Compra realizada con éxito.')
     return redirect('productos')
+
+
+def actualizar_carrito(request):
+    if request.method == 'POST':
+        for item in ItemCarrito.objects.filter(carrito__cliente__usuario=request.user):
+            nueva_cantidad = request.POST.get(f'cantidad_{item.id}')
+            if nueva_cantidad:
+                item.cantidad = int(nueva_cantidad)
+                item.save()
+        return redirect('carrito')

@@ -6,39 +6,39 @@
     </div>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <div class="container mt-2 pt-5s">
+    <div class="container mt-2 pt-5">
         <div class="row content-wrapper">
             <div class="col-md-6 text-center">
                 <h3>Nuestra Ubicación</h3>
                 <div id="map" style="height: 400px; width: 100%;"></div>
             </div>
             <div class="col-md-6">
-                <form class="form-contact">
+                <!-- Formulario de contacto -->
+                <form method="post" action="{% url 'contact' %}" class="form-contact">
+                    {% csrf_token %}
                     <div class="mb-3">
-                        <label for="name-input" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="name-input" placeholder="Escribe tu nombre..." required>
+                        <label for="id_nombre" class="form-label">Nombre</label>
+                        {{ form.nombre }}
                     </div>
                     <div class="mb-3">
-                        <label for="lastname-input" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control" id="lastname-input" placeholder="Escribe ambos apellidos..." required>
+                        <label for="id_apellido" class="form-label">Apellido</label>
+                        {{ form.apellido }}
                     </div>
                     <div class="mb-3">
-                        <label for="phone-input" class="form-label">Teléfono</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">+56</span>
-                            <input type="tel" class="form-control" id="phone-input" pattern="\d{9}" placeholder="Escribe tu teléfono..." required>
-                        </div>
+                        <label for="id_telefono" class="form-label">Teléfono</label>
+                        {{ form.telefono }}
                     </div>
                     <div class="mb-3">
-                        <label for="email-input" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email-input" placeholder="Escribe tu correo..." required>
+                        <label for="id_email" class="form-label">Email</label>
+                        {{ form.email }}
                     </div>
                     <div class="mb-3">
-                        <label for="message-input" class="form-label">Mensaje</label>
-                        <textarea id="message-input" class="form-control" rows="6" placeholder="Escribe tu mensaje..." required></textarea>
+                        <label for="id_mensaje" class="form-label">Mensaje</label>
+                        {{ form.mensaje }}
                     </div>
                     <button type="submit" class="btn btn-primary">Enviar mensaje</button>
                 </form>
+                <!-- Fin del formulario de contacto -->
             </div>
         </div>
     </div>

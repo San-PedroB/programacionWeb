@@ -1,3 +1,6 @@
+
+
+
 //Validacion de los input del formulario
 
 // Función para validar solo letras y espacios

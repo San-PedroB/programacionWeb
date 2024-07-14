@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import TipoProducto, Producto, Cliente, Carrito, ItemCarrito
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
+from .models import TipoProducto, Producto, Cliente, Carrito, ItemCarrito, MensajeContacto
 
 # Función para generar la lista de atributos automáticamente
 def obtener_todos_los_atributos(modelo):
@@ -25,9 +27,7 @@ class CarritoAdmin(admin.ModelAdmin):
 class ItemCarritoAdmin(admin.ModelAdmin):
     list_display = obtener_todos_los_atributos(ItemCarrito)
 
-# Registrar el modelo User con atributos personalizados
-from django.contrib.auth.models import User
-from django.contrib.auth.admin import UserAdmin
+admin.site.register(MensajeContacto)
 
 class UsuarioAdminPersonalizado(UserAdmin):
     list_display = obtener_todos_los_atributos(User)
