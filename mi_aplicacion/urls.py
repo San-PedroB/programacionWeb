@@ -8,7 +8,7 @@ from .views import *
 
 urlpatterns = [
     path('', views.index, name='inicio'),  # Ruta para la vista de índice
-    path('contact/', views.contacto, name='contact'),
+    path('contacto/', views.contacto, name='contacto'),
     path('productos/', views.productos, name='productos'),
     path('carrito/', views.carrito, name='carrito'),
     path('usuario/', views.usuario, name='usuario'),

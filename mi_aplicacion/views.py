@@ -21,7 +21,7 @@ def contacto(request):
             messages.error(request, 'Por favor corrige los errores a continuación.')
     else:
         form = ContactoForm()
-    return render(request, 'contact.html', {'form': form})
+    return render(request, 'contacto.html', {'form': form})
 
 
 @login_required
@@ -29,8 +29,8 @@ def ofertas(request):
     productos_oferta = Producto.objects.filter(es_oferta=True)
     return render(request, "ofertas.html", {'productos_oferta': productos_oferta})
 
-def contact(request):
-    return render(request, 'contact.html')
+#def contact(request):
+#    return render(request, 'contacto.html')
 
 def productos(request):
     productos = Producto.objects.all()

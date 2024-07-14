@@ -59,7 +59,7 @@ class FormularioRegistro(UserCreationForm):
                 'placeholder': 'Confirmar Contraseña...'
             }),
         }
-
+        
 class ContactoForm(forms.ModelForm):
     class Meta:
         model = MensajeContacto
