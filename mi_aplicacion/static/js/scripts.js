@@ -1,6 +1,3 @@
-
-
-
 //Validacion de los input del formulario
 
 // Función para validar solo letras y espacios
@@ -70,22 +67,61 @@ document.querySelector('.form-contact').addEventListener('submit', function(even
 
 });
 
+
 function initMap() {
-    const location = { lat: -33.494722354604036, lng: -70.72356904981942 }; // Coordenadas 
-    const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 17,
-        center: location
+    const destination = { lat: -33.494762, lng: -70.723526 };
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 18,
+        center: destination,
     });
-        new google.maps.Marker({
-        position: location,
-        map: map
+    const marker = new google.maps.Marker({
+        position: destination,
+        map: map,
+        title: "Nuestra ubicación",
+    });
+
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer();
+    directionsRenderer.setMap(map);
+    directionsRenderer.setPanel(document.getElementById("directions-panel"));
+
+    document.getElementById("get-directions").addEventListener("click", function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const origin = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                calculateAndDisplayRoute(directionsService, directionsRenderer, origin, destination);
+            }, function() {
+                alert("Error: La geolocalización falló.");
+            });
+        } else {
+            alert("Error: Tu navegador no soporta la geolocalización.");
+        }
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    initMap();
+function calculateAndDisplayRoute(directionsService, directionsRenderer, origin, destination) {
+    directionsService.route(
+        {
+            origin: origin,
+            destination: destination,
+            travelMode: google.maps.TravelMode.DRIVING,
+        },
+        (response, status) => {
+            if (status === "OK") {
+                directionsRenderer.setDirections(response);
+            } else {
+                window.alert("La solicitud de direcciones falló debido a " + status);
+            }
+        }
+    );
+}
+
+// Inicializar el mapa cuando la página haya terminado de cargarse
+window.addEventListener('load', function() {
+    if (document.getElementById("map")) {
+        initMap();
+    }
 });
-
-var carrito = [];
-
-localStorage.setItem("carrito", JSON.stringify(carrito));

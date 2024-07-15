@@ -59,8 +59,15 @@ class FormularioRegistro(UserCreationForm):
                 'placeholder': 'Confirmar Contraseña...'
             }),
         }
-        
+
 class ContactoForm(forms.ModelForm):
     class Meta:
         model = MensajeContacto
         fields = ['nombre', 'apellido', 'telefono', 'email', 'mensaje']
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'apellido': forms.TextInput(attrs={'class': 'form-control'}),
+            'telefono': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'mensaje': forms.Textarea(attrs={'class': 'form-control'}),
+        }

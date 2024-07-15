@@ -10,6 +10,11 @@ def index(request):
     productos_destacados = Producto.objects.filter(es_destacado=True)
     return render(request, "index.html", {'productos_destacados': productos_destacados})
 
+
+def productos(request):
+    productos = Producto.objects.all()
+    return render(request, 'productos.html', {'productos': productos})
+
 def contacto(request):
     if request.method == 'POST':
         form = ContactoForm(request.POST)
@@ -31,10 +36,6 @@ def ofertas(request):
 
 #def contact(request):
 #    return render(request, 'contacto.html')
-
-def productos(request):
-    productos = Producto.objects.all()
-    return render(request, 'productos.html', {'productos': productos})
 
 @login_required
 def usuario(request):
