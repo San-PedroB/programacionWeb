@@ -1,0 +1,81 @@
+Configuración del Entorno de Desarrollo
+1. Instalación de Python y pip
+Descarga e instala la versión más reciente de Python y pip desde el sitio oficial.
+
+2. Creación de un Entorno Virtual
+Crea y activa un entorno virtual para el proyecto:
+
+python -m venv venv
+venv\Scripts\activate  # En Windows
+source venv/bin/activate  # En macOS/Linux
+
+3. Instalación de Django
+Instala Django dentro del entorno virtual:
+
+pip install django
+
+
+4. Configuración del Proyecto Django
+Crea un nuevo proyecto Django o navega al proyecto existente:
+
+django-admin startproject yeya_tejidos
+cd yeya_tejidos
+
+
+5. Configuración de la Base de Datos
+Configura la base de datos en settings.py. Por ejemplo, para SQLite:
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+
+6. Migraciones de Base de Datos
+Ejecuta las migraciones iniciales:
+
+python manage.py makemigrations
+python manage.py migrate
+
+
+7. Creación de un Superusuario
+Crea un superusuario para el panel de administración:
+
+python manage.py createsuperuser
+
+8. Ejecución del Servidor de Desarrollo
+Inicia el servidor de desarrollo:
+
+python manage.py runserver
+
+
+Accede a http://127.0.0.1:8000/.
+
+9. Configuración de settings.py para Desarrollo
+Asegura que settings.py esté configurado adecuadamente:
+
+DEBUG = True
+ALLOWED_HOSTS = []
+
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
+10. Instalación de Dependencias Adicionales
+Instala dependencias adicionales según sea necesario:
+
+pip install djangorestframework pillow
+
+
+Agrega las dependencias a requirements.txt:
+
+# requirements.txt
+Django>=3.0,<4.0
+djangorestframework
+pillow
+
+
+
